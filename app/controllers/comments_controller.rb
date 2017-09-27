@@ -25,10 +25,10 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @Comment = Comment.all
-    @comment = Comment.new(comment_params)
-    @comment.photo = @photo
-    @comment.user = current_user
+    @comments = Comment.all
+    @new_comment = Comment.new(comment_params)
+    @new_comment.photo = @photo
+    @new_comment.user = current_user
 
     respond_to do |format|
       if @new_comment.save
@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to photo_comments_url(@photo), notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to photo_comments_url(@photo), notice: 'Comment was successfully deleted.' }
       format.json { head :no_content }
     end
   end
