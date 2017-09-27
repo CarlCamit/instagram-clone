@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.where(photo: @photo)
     @new_comment = Comment.new
   end
 
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comments = Comment.all
+    @comments = Comment.where(photo: @photo)
     @new_comment = Comment.new(comment_params)
     @new_comment.photo = @photo
     @new_comment.user = current_user
