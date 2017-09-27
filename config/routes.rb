@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
-  resources :photos
-  devise_for :users
   root 'landing#index'
+  devise_for :users
+  resources :photos do
+    resources :comments
+  end
 end
