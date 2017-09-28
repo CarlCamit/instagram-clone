@@ -5,7 +5,7 @@ class Photo < ApplicationRecord
     has_and_belongs_to_many :likers, class_name: 'User', join_table: :likes
 
     geocoded_by :location
-    after_validation :geocode, if: :location_changed?   # auto-fetch coordinates
+    after_validation :geocode, if: ->(obj){ obj.location_changed? and obj.location_changed? }   # auto-fetch coordinates
 
     # group_photo.liked_by?(js)
     def liked_by?(user)
