@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<section>
+<div class="d-flex flex-wrap">
   <% @photos.each do |photo| %>
     <article>
       <%= link_to photo do %>
@@ -10,7 +10,7 @@
       <% end %>
     </article>
   <% end %>
-</section>
+</div>
 
 <div class="nav sticky-top justify-content-center pt-2 pb-2 bg-light">
   <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary' %>
