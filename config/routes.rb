@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root 'landing#index'
   devise_for :users
   resources :users, only: [:show, :update], controller: :profiles
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
   resources :conversations do
     resources :messages
   end
+  get '/feed' => 'feed#index'
 end

@@ -1,0 +1,22 @@
+<p>
+  <strong>Image data:</strong>
+  <% if photo.image.present? %>
+    <p><%= image_tag photo.image_url %></p>
+    <% if photo.description.present? %>
+        <p>Description: <%= photo.description %></p>
+    <% end %>
+    <% if photo.location.present? %>
+        <p>Location: <%= photo.location %></p>
+        <iframe width="600" height="450" frameborder="0" style="border:0" 
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC728XJFz4RhOn_e9uW_uioHl7WOLe-0BY&q=<%= photo.latitude %>,<%= photo.longitude %>" 
+        allowfullscreen></iframe>
+    <% end %>
+  <% end %>
+</p>
+
+<!-- Like button -->
+<%= form_with(model: photo, method: :patch) do |f|%>
+  <% toggle_like = photo.liked_by?(current_user) %>
+  <%= f.hidden_field :toggle_like, value: toggle_like %>
+  <%= f.button toggle_like ? 'Unlike' : 'Like' %>
+<% end %>
